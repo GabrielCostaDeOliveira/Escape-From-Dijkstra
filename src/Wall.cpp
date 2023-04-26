@@ -113,7 +113,7 @@ void Wall::draw(){
 
             int x_coord = (i * this->win_width) / (this->sq_width * this->sq_width);
             int y_coord = (j) / this->sq_width;
-            unsigned int value = map2[0][x_coord + y_coord];
+            unsigned int value = map1[0][x_coord + y_coord];
             sf::Color cor_atual;
             cor_atual.r = 0;
             cor_atual.g = 0;
