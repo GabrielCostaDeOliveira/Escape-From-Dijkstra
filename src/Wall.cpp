@@ -1,6 +1,7 @@
 #include "../include/Wall.hpp"
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include <set>
 
 // Temporário
 #include <iostream>
@@ -136,6 +137,30 @@ void Wall::draw(){
             this->blocks_list.push_back(block);
         }
     }
+}
+
+
+ std::set<std::pair<int, int>> Wall::get_list_position_can_move(){
+
+  std::set<std::pair<int, int>> possible_position;
+
+    for (int i = 0; i < this->win_height; i += this->sq_height)
+        for (int j = 0; j < this->win_width; j += this->sq_width){
+
+            int x_coord = (i * this->win_width) / (this->sq_width * this->sq_width);
+            int y_coord = (j) / this->sq_width;
+            unsigned int value = map2[0][x_coord + y_coord];
+
+            if (value == 0xff000000)
+              possible_position.insert({i, j});
+
+
+      return possible_position;
+
+    }
+
+    return possible_position;
+  
 }
 
 std::vector<sf::RectangleShape> &Wall::get_block_list(){

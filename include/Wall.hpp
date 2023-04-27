@@ -3,6 +3,8 @@
 
 #include<vector>
 #include <SFML/Graphics.hpp>
+#include<set>
+
 
 class Wall{
     private:
@@ -23,6 +25,7 @@ class Wall{
     void set_block_size(int height, int width);
     void draw();
     std::vector<sf::RectangleShape> &get_block_list();
+    std::set<std::pair<int, int>> get_list_position_can_move();
 };
 
 #endif

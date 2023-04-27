@@ -9,6 +9,8 @@ int dist(sf::Vector2f a, sf::Vector2f b){
 
 Monster::Monster(int width, int height, Wall wall){
     this->wall = wall;
+    this->list_position_can_move = wall.get_list_position_can_move();
+
     this->monster.setSize(sf::Vector2f(width, height));
     sf::Vector2f monsterPosition(40, 10);
     this->monster.setPosition(monsterPosition); 
@@ -45,5 +47,14 @@ void Monster::move(sf::Vector2f player_position){
     }
 
     this->set_position(nextMove.x, nextMove.y);
+}
+
+
+
+sf::RectangleShape next_positon(){
+
+
+
+
 }
 
