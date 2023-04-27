@@ -1,4 +1,7 @@
 #include <SFML/Graphics.hpp>
+#include <map>
+#include <queue>
+#include <utility>
 #include "../include/Wall.hpp"
 #include "../include/Monster.hpp"
 
@@ -49,12 +52,43 @@ void Monster::move(sf::Vector2f player_position){
     this->set_position(nextMove.x, nextMove.y);
 }
 
+void Monster::move_bfs(sf::Vector2f player_position) {
 
+    const std::vector<std::pair<int, int>> moves {{0, 1}, {1, 0}, {-1, 0}, {0, -1}};
 
-sf::RectangleShape next_positon(){
+    std::map<std::pair<int, int>, std::pair<int, int>> father;
 
+    std::pair<int, int> current_position_of_moster(static_cast<int>(this->monster.getPosition().x), static_cast<int>(this->monster.getPosition().y));
 
+    std::queue<std::pair<int, int>> q;
+    q.push(current_position_of_moster);
 
+    std::set<std::pair<int, int>> visited;
+    visited.insert(current_position_of_moster);
 
+    while (not q.empty()) {
+
+        auto v = q.front();
+        q.pop();
+
+        for (auto m : moves) {
+            std::pair<int, int> u;
+            u.first = m.first + v.first;
+            u.second = m.second + v.second;
+
+            if (!visited.count(u) && list_position_can_move.count(u)) {
+                father[u] = v;
+                q.push(u);
+                visited.insert(u);
+            }
+        }
+    }
+
+    std::pair<int, int> next_position = std::make_pair(static_cast<int>(player_position.x), static_cast<int>(player_position.y));
+
+    while (father[next_position] != current_position_of_moster) {
+        next_position = father[next_position];
+    }
+
+    this->set_position(static_cast<float>(next_position.first), static_cast<float>(next_position.second));
 }
-

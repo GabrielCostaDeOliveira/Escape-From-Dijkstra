@@ -10,7 +10,7 @@
 #include "../include/Header.hpp"
 #include <string>
 
-const float RATE_MONSTER_MOVE = 20.0;
+const float RATE_MONSTER_MOVE = 10000.0;
 const float MAX_DISTANCE_TO_PLAYER = 70;
 
 int distance(sf::Vector2f a, sf::Vector2f b){
@@ -94,8 +94,8 @@ int main(){
         }
 
         if (dt_monster.getElapsedTime().asMilliseconds() > RATE_MONSTER_MOVE) {
-            monster.move(player.body.getPosition());
-            dt_monster.restart().asMilliseconds();
+            monster.move_bfs(player.body.getPosition());
+            dt_monster.restart();
         }
 
         // Renderizar tudo. 
@@ -105,7 +105,7 @@ int main(){
         if(distance(player.body.getPosition(), monster.get_monster().getPosition()) <= MAX_DISTANCE_TO_PLAYER)
             window.draw(monster.get_monster());
 
-        for (auto w : wall.get_block_list())
+        for (auto &w : wall.get_block_list())
             if(distance(player.body.getPosition(), w.getPosition()) <= MAX_DISTANCE_TO_PLAYER)
                 window.draw(w);
         

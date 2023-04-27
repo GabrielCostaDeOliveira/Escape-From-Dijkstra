@@ -19,12 +19,9 @@ class Monster{
     ~Monster();
 
     void move(sf::Vector2f player_position);
+    void move_bfs(sf::Vector2f player_position);
     sf::RectangleShape get_monster();
     void set_position(int x, int y);
-
-    public:
-    
-    sf::RectangleShape next_position();
 
 };
 
