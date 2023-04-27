@@ -7,7 +7,8 @@ int dist(sf::Vector2f a, sf::Vector2f b){
 }
 
 
-Monster::Monster(int width, int height){
+Monster::Monster(int width, int height, Wall wall){
+    this->wall = wall;
     this->monster.setSize(sf::Vector2f(width, height));
     sf::Vector2f monsterPosition(40, 10);
     this->monster.setPosition(monsterPosition); 

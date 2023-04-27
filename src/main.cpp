@@ -3,11 +3,11 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/System.hpp>
-#include <Player.hpp>
+#include "../include/Player.hpp"
 #include <SFML/Audio.hpp>
-#include <Wall.hpp>
-#include <Monster.hpp>
-#include <Header.hpp>
+#include "../include/Wall.hpp"
+#include "../include/Monster.hpp"
+#include "../include/Header.hpp"
 #include <string>
 
 const float RATE_MONSTER_MOVE = 20.0;
@@ -59,7 +59,7 @@ int main(){
     main_theme.play();
 
     // Monstro
-    Monster monster(GRID_SIZE, GRID_SIZE);
+    Monster monster(GRID_SIZE, GRID_SIZE, wall);
     sf::Clock dt_monster;
 
     Header header;
