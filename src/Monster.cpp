@@ -1,5 +1,6 @@
-#include <Monster.hpp>
 #include <SFML/Graphics.hpp>
+#include "../include/Wall.hpp"
+#include "../include/Monster.hpp"
 
 int dist(sf::Vector2f a, sf::Vector2f b){
     return abs(a.x - b.x) + abs(a.y - b.y);
